@@ -16,7 +16,8 @@ public class Main {
         }
 
 //        Stack stack = new StackOfStringsLinkedList();
-        Stack stack = new StackOfStringsArrayImpl(10);
+//        Stack stack = new StackOfStringsArrayImpl(10);
+        Stack stack = new ResizedStackOfStringsArrayImpl();
         while (scanner.hasNext()) {
             String s = scanner.next();
             if (s.equals("-")) {

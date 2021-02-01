@@ -1,7 +1,7 @@
 package com.alex.andreiev;
 
 public class StackOfStringsArrayImpl extends Stack {
-    private String[] s;
+    protected String[] s;
     private int capacity;
 
     public StackOfStringsArrayImpl(int capacity){
