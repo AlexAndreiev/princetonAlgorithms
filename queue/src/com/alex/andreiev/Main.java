@@ -14,7 +14,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        QueueOfStrings queue = new QueueLinkedList();
+//        QueueOfStrings queue = new QueueLinkedList();
+        QueueOfStrings queue = new QueueArrayImpl(10);
         while (scanner.hasNext()) {
             String s = scanner.next();
             if (s.equals("-")) {
@@ -24,8 +25,13 @@ public class Main {
                     e.printStackTrace();
                 }
             }
-            else
-                queue.enqueue(s);
+            else {
+                try {
+                    queue.enqueue(s);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

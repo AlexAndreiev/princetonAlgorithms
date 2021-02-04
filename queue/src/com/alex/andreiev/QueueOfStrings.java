@@ -6,9 +6,7 @@ public abstract class QueueOfStrings {
     public QueueOfStrings(){
     }
 
-    public void enqueue(String item){
-
-    }
+    abstract void enqueue(String item) throws Exception;
 
     public String dequeue() throws Exception {
         if (isEmpty()) throw new Exception("Queue is empty");
