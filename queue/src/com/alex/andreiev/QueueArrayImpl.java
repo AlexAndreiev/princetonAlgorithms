@@ -5,19 +5,18 @@ public class QueueArrayImpl extends QueueOfStrings {
     private String[] arr;
     private int head, tail;
 
-    public QueueArrayImpl(int capacity){
-        arr = new String[capacity];
+    public QueueArrayImpl(){
+        arr = new String[1];
         head = tail = 0;
     }
 
     public void enqueue(String item) throws Exception {
-        if (tail == arr.length)
-            throw new Exception("Queue is full.");
-
         arr[tail++] = item;
 
-        if (tail == arr.length && head != 0)
-            rearrange();
+        if (tail - head == arr.length) // all elements are taken
+            rearrange(arr.length * 2);
+        else  if (tail == arr.length && head != 0)
+            rearrange(arr.length); //just move elements to the array's beginning
     }
 
     @Override
@@ -25,6 +24,8 @@ public class QueueArrayImpl extends QueueOfStrings {
         String item = super.dequeue();
         item = arr[head];
         arr[head++] = null;
+        if (tail - head < arr.length/4) // all elements are taken
+            rearrange(arr.length / 2);
         return item;
     }
 
@@ -33,15 +34,14 @@ public class QueueArrayImpl extends QueueOfStrings {
         return head == tail;
     }
 
-    private void rearrange()
+    private void rearrange(int length)
     {
-        String newArr[] = new String[arr.length];
+        String newArr[] = new String[length];
         int j = 0;
         for (int i = head; i < tail; i++)
             newArr[j++] = arr[i];
-        newArr = arr;
+        arr = newArr;
         tail = tail - head;
         head = 0;
     }
-
 }

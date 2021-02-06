@@ -15,7 +15,7 @@ public class Main {
         }
 
 //        QueueOfStrings queue = new QueueLinkedList();
-        QueueOfStrings queue = new QueueArrayImpl(10);
+        QueueOfStrings queue = new QueueArrayImpl();
         while (scanner.hasNext()) {
             String s = scanner.next();
             if (s.equals("-")) {
