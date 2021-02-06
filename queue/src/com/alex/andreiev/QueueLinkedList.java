@@ -1,11 +1,11 @@
 package com.alex.andreiev;
 
-public class QueueLinkedList extends QueueOfStrings {
+public class QueueLinkedList<T> extends Queue<T> {
     Node first;
     Node last;
 
     @Override
-    public void enqueue(String item) {
+    public void enqueue(T item) {
         Node oldLast = last;
         last = new Node();
         last.item = item;
@@ -20,8 +20,8 @@ public class QueueLinkedList extends QueueOfStrings {
     }
 
     @Override
-    public String dequeue() throws Exception {
-        String item = super.dequeue();
+    public T dequeue() throws Exception {
+        T item = super.dequeue();
         item = first.item;
         first = first.next;
         if (isEmpty())
@@ -31,7 +31,7 @@ public class QueueLinkedList extends QueueOfStrings {
     }
 
     private class Node{
-        String item;
+        T item;
         Node next;
     }
 }

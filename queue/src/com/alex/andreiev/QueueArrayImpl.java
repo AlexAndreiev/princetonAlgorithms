@@ -1,16 +1,16 @@
 package com.alex.andreiev;
 
-public class QueueArrayImpl extends QueueOfStrings {
+public class QueueArrayImpl<T> extends Queue<T> {
 
-    private String[] arr;
+    private T[] arr;
     private int head, tail;
 
     public QueueArrayImpl(){
-        arr = new String[1];
+        arr = (T[]) new Object[1];
         head = tail = 0;
     }
 
-    public void enqueue(String item) throws Exception {
+    public void enqueue(T item) throws Exception {
         arr[tail++] = item;
 
         if (tail - head == arr.length) // all elements are taken
@@ -20,8 +20,8 @@ public class QueueArrayImpl extends QueueOfStrings {
     }
 
     @Override
-    public String dequeue() throws Exception {
-        String item = super.dequeue();
+    public T dequeue() throws Exception {
+        T item = super.dequeue();
         item = arr[head];
         arr[head++] = null;
         if (tail - head < arr.length/4) // all elements are taken
@@ -36,7 +36,7 @@ public class QueueArrayImpl extends QueueOfStrings {
 
     private void rearrange(int length)
     {
-        String newArr[] = new String[length];
+        T newArr[] = (T[]) new Object[length];
         int j = 0;
         for (int i = head; i < tail; i++)
             newArr[j++] = arr[i];

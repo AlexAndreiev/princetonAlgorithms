@@ -1,23 +1,19 @@
 package com.alex.andreiev;
 
-import java.io.IOException;
-import java.nio.file.Path;
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 //        System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(Path.of("./resources/stackData.txt"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        InputStream is = Stack.class.getResourceAsStream("/stackData.txt");
 
-//        Stack stack = new StackOfStringsLinkedList();
-//        Stack stack = new StackOfStringsArrayImpl(10);
-        Stack stack = new ResizedStackOfStringsArrayImpl();
+        Scanner scanner = new Scanner(is);
+
+//        Stack stack = new StackOfStringsLinkedList<String>();
+//        Stack stack = new StackOfStringsArrayImpl<String>(10);
+       Stack stack = new ResizedStackArrayImpl<String>();
         while (scanner.hasNext()) {
             String s = scanner.next();
             if (s.equals("-")) {

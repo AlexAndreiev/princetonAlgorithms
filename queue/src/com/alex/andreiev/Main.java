@@ -1,21 +1,16 @@
 package com.alex.andreiev;
 
-import java.io.IOException;
-import java.nio.file.Path;
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(Path.of("./resources/queueData.txt"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        InputStream is = QueueLinkedList.class.getResourceAsStream("/queueData.txt");
+        Scanner scanner = new Scanner(is);
 
-//        QueueOfStrings queue = new QueueLinkedList();
-        QueueOfStrings queue = new QueueArrayImpl();
+//        Queue queue = new QueueLinkedList<String>();
+        Queue queue = new QueueArrayImpl<String>();
         while (scanner.hasNext()) {
             String s = scanner.next();
             if (s.equals("-")) {

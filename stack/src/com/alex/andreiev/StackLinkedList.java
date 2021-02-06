@@ -1,11 +1,10 @@
 package com.alex.andreiev;
 
 //linked-list approach
-public class StackOfStringsLinkedList extends Stack{
+public class StackLinkedList<T> extends Stack<T>{
     private Node first;
-    private int size = 0;
 
-    public void push(String item){
+    public void push(T item){
         Node newNode = new Node();
         newNode.item = item;
         newNode.next = first;
@@ -14,9 +13,9 @@ public class StackOfStringsLinkedList extends Stack{
     }
 
     @Override
-    public String pop() throws Exception {
+    public T pop() throws Exception {
         super.pop();
-        String item = first.item;
+        T item = first.item;
         first = first.next;
         size--;
         return item;
@@ -24,7 +23,7 @@ public class StackOfStringsLinkedList extends Stack{
 
     private class Node
     {
-        String item;
+        T item;
         Node next;
     }
 }

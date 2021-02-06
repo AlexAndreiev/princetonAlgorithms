@@ -1,16 +1,16 @@
 package com.alex.andreiev;
 
-public abstract class QueueOfStrings {
+public abstract class Queue<T> {
     int size = 0;
 
-    public QueueOfStrings(){
+    public Queue(){
     }
 
-    abstract void enqueue(String item) throws Exception;
+    abstract void enqueue(T item) throws Exception;
 
-    public String dequeue() throws Exception {
+    public T dequeue() throws Exception {
         if (isEmpty()) throw new Exception("Queue is empty");
-        return "";
+        return null;
     }
 
     public boolean isEmpty() { return getSize() == 0; }
