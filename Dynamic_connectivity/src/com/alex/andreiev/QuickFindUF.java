@@ -1,7 +1,5 @@
 package com.alex.andreiev;
 
-import java.util.stream.IntStream;
-
 public class QuickFindUF extends BaseUF {
 
     public QuickFindUF(int N) {

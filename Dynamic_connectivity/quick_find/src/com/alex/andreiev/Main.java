@@ -1,18 +1,12 @@
-package com.company;
+package com.alex.andreiev;
 
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Path;
-import java.util.ResourceBundle;
 import java.util.Scanner;
-
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-//        System.out.println("Working Directory = " + System.getProperty("user.dir"));
-//        URL url = ClassLoader.class.getResource("tinyUF.txt");
-//        ResourceBundle bundle = ResourceBundle.getBundle("tinyUF.txt");
         Scanner scanner = new Scanner(Path.of("./resources/tinyUF.txt"));
         int N = scanner.nextInt();
         QuickFindUF uf = new QuickFindUF(N);
@@ -20,7 +14,7 @@ public class Main {
         {
             int p = scanner.nextInt();
             int q = scanner.nextInt();
-            if (!uf.equals(p, q))
+            if (!uf.connected(p, q))
             {
                 uf.union(p, q);
                 System.out.println(p + " " + q);
