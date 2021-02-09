@@ -1,5 +1,7 @@
 package com.alex.andreiev;
 
+import java.util.Iterator;
+
 public class StackArrayImpl<T> extends Stack<T> {
     protected T[] s;
     private int capacity;
@@ -19,5 +21,23 @@ public class StackArrayImpl<T> extends Stack<T> {
     @Override
     public void push(T item) {
         s[size++] = item;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayIterator();
+    }
+
+    private class ArrayIterator implements Iterator<T>{
+        private int current = capacity;
+        @Override
+        public boolean hasNext() {
+            return current > 0;
+        }
+
+        @Override
+        public T next() {
+            return s[--current];
+        }
     }
 }
