@@ -14,7 +14,8 @@ public class Main {
         while (scanner.hasNext())
             arr[i++] = scanner.nextInt();
 
-        for (int a : arr)
-            System.out.println(a);
+        int value = 33;
+        int index = BinarySearch.search(arr, value);
+        System.out.println("index of " + value + " = " + index );
     }
 }
