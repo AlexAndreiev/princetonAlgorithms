@@ -11,4 +11,10 @@ public class TreeSumAlg {
                         res++;
         return res;
     }
+
+    public static int SortingBased(int[] arr){
+        //sorting-based algorithm
+        //sort the N (disctinct) numbers.
+        //for each pair of numbers a[i] and a[j], binary search for -(a[i] + a[j]).
+    }
 }
