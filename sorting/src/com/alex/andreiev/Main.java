@@ -17,7 +17,7 @@ public class Main {
         var randomized = new Random();
         for (int i = 0; i < N; i++)
             arr[i] = (rangeMax - rangeMin) * randomized.nextDouble() + rangeMin;
-        SortingAlgorithms.Bubble(arr);
+        SortingAlgorithms.Selection(arr);
         for (double d : arr)
             System.out.println(d);
     }

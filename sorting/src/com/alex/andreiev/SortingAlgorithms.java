@@ -12,6 +12,19 @@ public class SortingAlgorithms {
                 else break;
     }
 
+    public static void Selection(Comparable[] arr){
+        int len = arr.length;
+        int i = 0;
+        while (i < len-1){
+            int min = i;
+            for (int j = i+1; j < len; j++)
+                if (less(arr[j], arr[min]))
+                    min = j;
+            exchange(arr, i, min);
+            i++;
+        }
+    }
+
     public static void Insertion(Comparable[] arr){
 
     }
