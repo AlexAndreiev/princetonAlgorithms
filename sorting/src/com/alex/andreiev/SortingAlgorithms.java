@@ -4,14 +4,6 @@ import java.util.TreeMap;
 
 public class SortingAlgorithms {
 
-    public static void Bubble(Comparable[] arr){
-        for (int i = 0; i < arr.length; i++)
-            for (int j = i; j > 0; j--)
-                if (arr[j].compareTo(arr[j-1]) < 0)
-                    exchange(arr, j, j-1);
-                else break;
-    }
-
     public static void Selection(Comparable[] arr){
         int len = arr.length;
         int i = 0;
@@ -26,7 +18,11 @@ public class SortingAlgorithms {
     }
 
     public static void Insertion(Comparable[] arr){
-
+        for (int i = 1; i < arr.length; i++)
+            for (int j=i; j > 0; j--)
+                if (less(arr[j], arr[j-1]))
+                    exchange(arr, j, j-1);
+                else break;
     }
 
     private  static void exchange(Comparable[] arr, int i, int j){
