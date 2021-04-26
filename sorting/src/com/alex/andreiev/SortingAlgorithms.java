@@ -25,6 +25,22 @@ public class SortingAlgorithms {
                 else break;
     }
 
+    public static void Shell(Comparable[] arr){
+        int N = arr.length;
+        int h = 1;
+        while (h < N/3)
+            h = 3*h + 1; // 1, 4, 13, 20,121, 364, ...
+        while (h >= 1)
+        {// h-sort the array
+            for (int i = h; i < N; i++){
+                for (int j = i; j >= h && less(arr[j], arr[j-h]); j -= h) {
+                    exchange(arr, j, j - h);
+                }
+            }
+            h = h/3;
+        }
+    }
+
     private  static void exchange(Comparable[] arr, int i, int j){
         Comparable tmp = arr[i];
         arr[i] = arr[j];
