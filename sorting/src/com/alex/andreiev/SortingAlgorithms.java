@@ -1,5 +1,6 @@
 package com.alex.andreiev;
 
+import java.util.Random;
 import java.util.TreeMap;
 
 public class SortingAlgorithms {
@@ -39,6 +40,12 @@ public class SortingAlgorithms {
             }
             h = h/3;
         }
+    }
+
+    public static void KnuthShuffle(Comparable[] arr){
+        var r = new Random();
+        for (int i = 1; i < arr.length; i++)
+            exchange(arr, i, r.nextInt(i));
     }
 
     private  static void exchange(Comparable[] arr, int i, int j){
