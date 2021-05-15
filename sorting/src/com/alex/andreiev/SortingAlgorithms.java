@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.TreeMap;
 
 public class SortingAlgorithms {
+    private static final int CUTOFF = 7;
 
     public static void Selection(Comparable[] arr){
         int len = arr.length;
@@ -18,9 +19,9 @@ public class SortingAlgorithms {
         }
     }
 
-    public static void Insertion(Comparable[] arr){
-        for (int i = 1; i < arr.length; i++)
-            for (int j=i; j > 0; j--)
+    public static void Insertion(Comparable[] arr, int lo, int hi){
+        for (int i = lo; i <= hi; i++)
+            for (int j = i; j > 0; j--)
                 if (less(arr[j], arr[j-1]))
                     exchange(arr, j, j-1);
                 else break;
@@ -44,35 +45,53 @@ public class SortingAlgorithms {
 
     public static void MergeSort(Comparable[] arr){
         var aux = new Comparable[arr.length];
+        //improvement3
+        for (int i = 0; i < arr.length; i++)
+            aux[i] = arr[i];
         sort(arr, aux, 0, arr.length -1);
     }
 
     public static void sort(Comparable[] arr, Comparable[] aux, int lo, int hi){
         if (hi <= lo) return;
+//         improvement1
+//        if (hi <= lo + CUTOFF - 1){
+//            Insertion(arr, lo, hi);
+//            return;
+//        }
+        //----
         int mid = lo + (hi-lo) /2;
-        sort(arr, aux, lo, mid);
-        sort(arr, aux, mid+1, hi);
-        merge(arr, aux, lo, mid, hi);
+//        sort(arr, aux, lo, mid);
+//        sort(arr, aux, mid+1, hi);
+        // improvement3
+        sort(aux, arr, lo, mid);        // Note: sort(a) initializes aux[] and sets
+        sort(aux, arr, mid+1, hi);  // aux[i] = a[i] for each i
+        // improvement2
+//        if (!less((arr[mid+1]), arr[mid])) return;
+        //----
+//        merge(arr, aux, lo, mid, hi);
+        //improvement3
+        merge(aux, arr, lo, mid, hi);
     }
 
     public static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi){
         assert isSorted(a, lo, mid); // precondition a[lo..mid] sorted
         assert isSorted(a, mid+1, hi); // precondition a[mid+1..hi] sorted
-
-        for (int k = lo; k <= hi; k++)
-            aux[k] = a[k];
+//commented due to improvement3
+//        for (int k = lo; k <= hi; k++)
+//            aux[k] = a[k];
 
         int i = lo;
         int j = mid+1;
         for (int k = lo; k <= hi; k++){
-            if (i > mid)
-                a[k] = aux[j++];
-            else if (j > hi)
-                a[k] = aux[i++];
-            else if (less (aux[j], aux[i]))
-                a[k] = aux[j++];
-            else
-                a[k] = aux[i++];
+//            if (i > mid)                    a[k] = aux[j++];
+//            else if (j > hi)                a[k] = aux[i++];
+//            else if (less(aux[j], aux[i]))  a[k] = aux[j++];
+//            else                            a[k] = aux[i++];
+            //improvement3
+            if (i > mid)                    aux[k] = a[j++];
+            else if (j > hi)                aux[k] = a[i++];
+            else if (less(a[j], a[i]))      aux[k] = a[j++];
+            else                            aux[k] = a[i++];
         }
         assert isSorted(a, lo, hi);
     }
