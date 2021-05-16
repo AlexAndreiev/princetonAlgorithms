@@ -44,14 +44,24 @@ public class SortingAlgorithms {
     }
 
     public static void MergeSort(Comparable[] arr){
-        var aux = new Comparable[arr.length];
+        int len = arr.length;
+        var aux = new Comparable[len];
         //improvement3
-        for (int i = 0; i < arr.length; i++)
+        for (int i = 0; i < len; i++)
             aux[i] = arr[i];
-        sort(arr, aux, 0, arr.length -1);
+        sort(arr, aux, 0, len -1);
     }
 
-    public static void sort(Comparable[] arr, Comparable[] aux, int lo, int hi){
+    public static void MergeBottomUp(Comparable[] arr){
+        int len = arr.length;
+        var aux = new Comparable[len];
+        for (int sz = 1; sz < len; sz *= 2){
+            for (int lo = 0; lo < len - sz; lo += sz*2)
+               merge(arr, aux, lo, lo + sz-1, Math.min(lo+(sz*2)-1, len-1));
+        }
+    }
+
+    private static void sort(Comparable[] arr, Comparable[] aux, int lo, int hi){
         if (hi <= lo) return;
 //         improvement1
 //        if (hi <= lo + CUTOFF - 1){
@@ -70,24 +80,32 @@ public class SortingAlgorithms {
         //----
 //        merge(arr, aux, lo, mid, hi);
         //improvement3
-        merge(aux, arr, lo, mid, hi);
+        mergeOptimazed(aux, arr, lo, mid, hi);
     }
 
     public static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi){
         assert isSorted(a, lo, mid); // precondition a[lo..mid] sorted
         assert isSorted(a, mid+1, hi); // precondition a[mid+1..hi] sorted
-//commented due to improvement3
-//        for (int k = lo; k <= hi; k++)
-//            aux[k] = a[k];
+        for (int k = lo; k <= hi; k++)
+            aux[k] = a[k];
 
         int i = lo;
         int j = mid+1;
         for (int k = lo; k <= hi; k++){
-//            if (i > mid)                    a[k] = aux[j++];
-//            else if (j > hi)                a[k] = aux[i++];
-//            else if (less(aux[j], aux[i]))  a[k] = aux[j++];
-//            else                            a[k] = aux[i++];
-            //improvement3
+            if (i > mid)                    a[k] = aux[j++];
+            else if (j > hi)                a[k] = aux[i++];
+            else if (less(aux[j], aux[i]))  a[k] = aux[j++];
+            else                            a[k] = aux[i++];
+        }
+        assert isSorted(a, lo, hi);
+    }
+
+    public static void mergeOptimazed(Comparable[] a, Comparable[] aux, int lo, int mid, int hi){
+        assert isSorted(a, lo, mid); // precondition a[lo..mid] sorted
+        assert isSorted(a, mid+1, hi); // precondition a[mid+1..hi] sorted
+        int i = lo;
+        int j = mid+1;
+        for (int k = lo; k <= hi; k++){
             if (i > mid)                    aux[k] = a[j++];
             else if (j > hi)                aux[k] = a[i++];
             else if (less(a[j], a[i]))      aux[k] = a[j++];
