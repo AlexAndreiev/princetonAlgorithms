@@ -1,5 +1,6 @@
 package com.alex.andreiev;
 
+import java.util.Comparator;
 import java.util.Random;
 import java.util.TreeMap;
 
@@ -23,6 +24,13 @@ public class SortingAlgorithms {
         for (int i = lo; i <= hi; i++)
             for (int j = i; j > 0; j--)
                 if (less(arr[j], arr[j-1]))
+                    exchange(arr, j, j-1);
+                else break;
+    }
+    public static void Insertion(Object[] arr, int lo, int hi, Comparator comparator){
+        for (int i = lo; i <= hi; i++)
+            for (int j = i; j > 0; j--)
+                if (less(comparator, arr[j], arr[j-1]))
                     exchange(arr, j, j-1);
                 else break;
     }
@@ -120,14 +128,17 @@ public class SortingAlgorithms {
             exchange(arr, i, r.nextInt(i));
     }
 
-    private  static void exchange(Comparable[] arr, int i, int j){
-        Comparable tmp = arr[i];
+    private  static void exchange(Object[] arr, int i, int j){
+        Object tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
     }
 
     private static boolean less(Comparable v, Comparable w){
         return v.compareTo(w) < 0;
+    }
+    private static boolean less(Comparator comparator, Object obj1, Object obj2){
+        return comparator.compare(obj1, obj2) < 0;
     }
 
     private  static boolean isSorted(Comparable[] arr)
