@@ -182,6 +182,24 @@ public class SortingAlgorithms {
     }
     private static void sortQuickSort(Comparable[] arr, int lo, int hi){
         if (hi <= lo) return;
+//         improvement1
+//        Even quick sort has too much overhead for tiny subarrays
+//        Cutoff to insertion sort for ~ 10 items
+//        Note: could delay insertion sort until one pass at end
+//        if (hi <= lo + CUTOFF - 1){
+//            Insertion(arr, lo, hi);
+//            return;
+//        }
+
+//        improvement2
+//        Best choice of pivot item = median
+//        Estimate true median by taking median of sample
+//        Median-of-3 (random) items:
+//              12/7: N in N compares (slightly fewer)
+//              12/35 N in N exchanges (slightly more)
+//        int m = medianOf(a, lo, lo + (hi-lo)/2, hi);
+//        exchange(arr, lo, m);
+
         int j = partition(arr, lo, hi);
         sortQuickSort(arr, lo, j-1);
         sortQuickSort(arr, j+1, hi);
