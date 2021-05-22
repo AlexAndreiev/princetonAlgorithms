@@ -174,7 +174,10 @@ public class SortingAlgorithms {
     }
 
     public static void QuickSort(Comparable[] arr){
-        shuffleArr(arr); // shuffle needed for performance guarantee
+        // shuffle needed for performance guarantee
+        // probabilistic guarantee against worst case
+        // basic for math model that can be validated with experiments
+        shuffleArr(arr);
         sortQuickSort(arr, 0, arr.length-1);
     }
     private static void sortQuickSort(Comparable[] arr, int lo, int hi){
