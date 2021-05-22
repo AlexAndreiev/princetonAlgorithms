@@ -1,5 +1,6 @@
 package com.alex.andreiev;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.TreeMap;
@@ -128,7 +129,7 @@ public class SortingAlgorithms {
             exchange(arr, i, r.nextInt(i));
     }
 
-    private  static void exchange(Object[] arr, int i, int j){
+    private static void exchange(Object[] arr, int i, int j){
         Object tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
@@ -141,19 +142,56 @@ public class SortingAlgorithms {
         return comparator.compare(obj1, obj2) < 0;
     }
 
-    private  static boolean isSorted(Comparable[] arr)
+    private static boolean isSorted(Comparable[] arr)
     {
         for (int i = 1; i < arr.length; i++)
             if (less(arr[i], arr[i-1]))
                 return false;
         return true;
     }
-    private  static boolean isSorted(Comparable[] arr, int start, int end)
+    private static boolean isSorted(Comparable[] arr, int start, int end)
     {
         for (int i = start; i < end; i++)
             if (less(arr[i], arr[i-1]))
                 return false;
         return true;
+    }
+
+    private static int partition(Comparable[] arr, int lo, int hi){
+        int i = lo, j = hi+1;
+        while (true){
+            while (less(arr[++i], arr[lo])) // find item on left swap
+                if (i == hi) break;
+
+            while (less(arr[lo], arr[--j])) // find item on right to swap
+                if (j == lo) break;
+
+            if (i >= j) break; // check if pointers cross
+            exchange(arr, i, j); // swap
+        }
+        exchange(arr, lo, j); // swap with partitioning item
+        return j;   // return index of item now know to be in place
+    }
+
+    public static void QuickSort(Comparable[] arr){
+        shuffleArr(arr); // shuffle needed for performance guarantee
+        sortQuickSort(arr, 0, arr.length-1);
+    }
+    private static void sortQuickSort(Comparable[] arr, int lo, int hi){
+        if (hi <= lo) return;
+        int j = partition(arr, lo, hi);
+        sortQuickSort(arr, lo, j-1);
+        sortQuickSort(arr, j+1, hi);
+    }
+
+    private static void shuffleArr(Comparable[] arr){
+        var rand = new Random();
+        for (int i = 0; i < arr.length; i++){
+            int randIndexTpSwap = rand.nextInt(arr.length);
+            Comparable temp = arr[randIndexTpSwap];
+            arr[randIndexTpSwap] = arr[i];
+            arr[i] = temp;
+        }
     }
 
 }
