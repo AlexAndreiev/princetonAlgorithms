@@ -173,6 +173,22 @@ public class SortingAlgorithms {
         return j;   // return index of item now know to be in place
     }
 
+    private static ThreeWayPart ThreeWayPartition(Comparable[] arr, int lo, int hi){
+        int lt = lo, gt = hi;
+        Comparable v = arr[lo];
+        int i = lo;
+        while(i <= gt){
+            int cmp = arr[i].compareTo(v);
+            if (cmp < 0)        exchange(arr, lt++, i++);
+            else if (cmp > 0)   exchange(arr, i, gt--);
+            else                i++;
+        }
+        var res = new ThreeWayPart();
+        res.lt = lt;
+        res.gt = gt;
+        return res;
+    }
+
     public static void QuickSort(Comparable[] arr){
         // shuffle needed for performance guarantee
         // probabilistic guarantee against worst case
@@ -200,6 +216,10 @@ public class SortingAlgorithms {
 //        int m = medianOf(a, lo, lo + (hi-lo)/2, hi);
 //        exchange(arr, lo, m);
 
+//improvement3 - effective with duplicates
+//        var threeWayPart = ThreeWayPartition(arr, lo, hi);
+//        sortQuickSort(arr, lo, threeWayPart.lt - 1);
+//        sortQuickSort(arr, threeWayPart.gt + 1, hi);
         int j = partition(arr, lo, hi);
         sortQuickSort(arr, lo, j-1);
         sortQuickSort(arr, j+1, hi);
@@ -226,5 +246,8 @@ public class SortingAlgorithms {
         }
         return arr[k];
     }
+}
 
+class ThreeWayPart{
+    public int lt, gt;
 }

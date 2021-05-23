@@ -18,10 +18,10 @@ public class Main {
         for (int i = 0; i < N; i++)
             arr[i] = (rangeMax - rangeMin) * randomized.nextDouble() + rangeMin;
 //        SortingAlgorithms.Insertion(arr, 0, arr.length-1);
-//        SortingAlgorithms.QuickSort(arr);
+        SortingAlgorithms.QuickSort(arr);
         for (double d : arr)
             System.out.println(d);
-        double max = (double) SortingAlgorithms.Select(arr, arr.length-3);
-        System.out.println("3rd max = " + max);
+//        double max = (double) SortingAlgorithms.Select(arr, arr.length-3);
+//        System.out.println("3rd max = " + max);
     }
 }
