@@ -215,4 +215,16 @@ public class SortingAlgorithms {
         }
     }
 
+    public static Comparable Select(Comparable[] arr, int k){
+        shuffleArr(arr);
+        int lo = 0, hi = arr.length - 1;
+        while(hi > lo){
+            int j = partition(arr, lo, hi);
+            if (j < k)      lo = j + 1;
+            else if (j > k) hi = j - 1;
+            else            return arr[k];
+        }
+        return arr[k];
+    }
+
 }
