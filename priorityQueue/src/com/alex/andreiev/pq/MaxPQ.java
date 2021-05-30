@@ -2,7 +2,7 @@ package com.alex.andreiev.pq;
 
 import com.alex.andreiev.utils.Utils;
 
-public class MaxPQ <Key extends Comparable<Key> {
+public class MaxPQ <Key extends Comparable<Key>>{
 
     private Key[] pq;
     private int N = 0;
@@ -17,13 +17,13 @@ public class MaxPQ <Key extends Comparable<Key> {
 
     public void insert(Key x){
         pq[++N] = x;
-        swim(N);
+        com.alex.andreiev.pq.Utils.swim(pq, N);
     }
 
     public Key delMax(){
         Key max = pq[1];
         Utils.exchange(pq, 1, N--);
-        sink(1);
+        com.alex.andreiev.pq.Utils.sink(pq,1, N);
         pq[N+1] = null; // prevent loitering
         return max;
     }
@@ -38,24 +38,5 @@ public class MaxPQ <Key extends Comparable<Key> {
 
     public int size(){
         return N;
-    }
-
-    private void swim(int k){
-        while (k > 1 && Utils.less(pq[k/2], pq[k])){
-            Utils.exchange(pq, k, k/2);
-            k = k/2;
-        }
-    }
-
-    private void sink(int k){
-        while (2*k <= N)
-        {
-            int j = 2*k;
-            if (j<N && Utils.less(pq[j], pq[j+1]))
-                j++;
-            if (!Utils.less(pq[k], pq[j])) break;
-            Utils.exchange(pq, k, j);
-            k = j;
-        }
     }
 }
