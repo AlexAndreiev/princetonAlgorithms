@@ -2,17 +2,10 @@ package com.alex.andreiev.pq;
 
 import com.alex.andreiev.utils.Utils;
 
-public class MaxPQ<Key extends Comparable<Key>> implements PQ<Key>{
+public class MaxPQ<Key extends Comparable<Key>> extends BasePQ<Key>{
 
-    private Key[] pq;
-    private int N = 0;
-
-    public MaxPQ(int capacity){
-        pq = (Key[]) new Comparable[capacity + 1];
-    }
-
-    public MaxPQ(Key[] arr){
-
+    public MaxPQ(int capacity) {
+        super(capacity);
     }
 
     public void insert(Key x){
@@ -28,15 +21,7 @@ public class MaxPQ<Key extends Comparable<Key>> implements PQ<Key>{
         return max;
     }
 
-    public boolean isEmpty(){
-        return N == 0;
-    }
-
     public Key get(){
         return pq[1];
-    }
-
-    public int size(){
-        return N;
     }
 }

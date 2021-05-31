@@ -1,12 +1,9 @@
 package com.alex.andreiev.pq;
 
-public class MinPQ <Key extends Comparable<Key>> implements PQ<Key> {
-    public MinPQ() {
+public class MinPQ <Key extends Comparable<Key>> extends BasePQ<Key> {
 
-    }
-
-    public MinPQ(Key[] arr) {
-
+    public MinPQ(int capacity) {
+        super(capacity);
     }
 
     public void insert(Key v) {
@@ -17,14 +14,9 @@ public class MinPQ <Key extends Comparable<Key>> implements PQ<Key> {
 
     }
 
-    public boolean isEmpty() {
-
-    }
 
     public Key get() {
 
     }
 
-    public int size() {
-    }
 }
