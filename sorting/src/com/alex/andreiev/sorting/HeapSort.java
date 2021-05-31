@@ -1,4 +1,4 @@
-package com.alex.andreiev.pq;
+package com.alex.andreiev.sorting;
 import com.alex.andreiev.utils.Utils;
 
 // In-place sorting algorithm with N log N worst-case
