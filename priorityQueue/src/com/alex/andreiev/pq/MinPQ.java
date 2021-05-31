@@ -1,6 +1,6 @@
 package com.alex.andreiev.pq;
 
-public class MinPQ <Key extends Comparable<Key> {
+public class MinPQ <Key extends Comparable<Key>> implements PQ<Key> {
     public MinPQ() {
 
     }
@@ -13,7 +13,7 @@ public class MinPQ <Key extends Comparable<Key> {
 
     }
 
-    public Key delMax() {
+    public Key delete() {
 
     }
 
@@ -21,7 +21,7 @@ public class MinPQ <Key extends Comparable<Key> {
 
     }
 
-    public Key max() {
+    public Key get() {
 
     }
 

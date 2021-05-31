@@ -2,7 +2,7 @@ package com.alex.andreiev.pq;
 
 import com.alex.andreiev.utils.Utils;
 
-public class MaxPQ <Key extends Comparable<Key>>{
+public class MaxPQ<Key extends Comparable<Key>> implements PQ<Key>{
 
     private Key[] pq;
     private int N = 0;
@@ -20,7 +20,7 @@ public class MaxPQ <Key extends Comparable<Key>>{
         com.alex.andreiev.pq.Utils.swim(pq, N);
     }
 
-    public Key delMax(){
+    public Key delete(){
         Key max = pq[1];
         Utils.exchange(pq, 1, N--);
         com.alex.andreiev.pq.Utils.sink(pq,1, N);
@@ -32,7 +32,7 @@ public class MaxPQ <Key extends Comparable<Key>>{
         return N == 0;
     }
 
-    public Key max(){
+    public Key get(){
         return pq[1];
     }
 
