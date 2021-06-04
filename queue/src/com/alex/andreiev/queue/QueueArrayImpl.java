@@ -1,5 +1,7 @@
 package com.alex.andreiev.queue;
 
+import java.util.Iterator;
+
 public class QueueArrayImpl<T> extends Queue<T> {
 
     private T[] arr;
@@ -43,5 +45,23 @@ public class QueueArrayImpl<T> extends Queue<T> {
         arr = newArr;
         tail = tail - head;
         head = 0;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayIterator();
+    }
+
+    private class ArrayIterator implements Iterator<T>{
+        private int current = capacity;
+        @Override
+        public boolean hasNext() {
+            return current > 0;
+        }
+
+        @Override
+        public T next() {
+            return s[--current];
+        }
     }
 }

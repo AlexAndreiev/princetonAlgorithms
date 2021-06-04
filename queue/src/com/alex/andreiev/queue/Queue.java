@@ -1,12 +1,12 @@
 package com.alex.andreiev.queue;
 
-public abstract class Queue<T> {
+public abstract class Queue<T> implements Iterable<T> {
     int size = 0;
 
     public Queue(){
     }
 
-    abstract void enqueue(T item) throws Exception;
+    public abstract void enqueue(T item) throws Exception;
 
     public T dequeue() throws Exception {
         if (isEmpty()) throw new Exception("Queue is empty");
