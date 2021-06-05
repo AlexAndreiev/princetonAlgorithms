@@ -1,12 +1,16 @@
 package com.alex.andreiev.dynConnectivity;
 
-public class QuickUnionImproved extends QuickUnion{
+// weighted quick-union
+// initialize - N
+// union - lgN (includes cost of finding roots)
+// connected - lgN (includes cost of finding roots)
+
+public class WeightedQuickUnion extends QuickUnion{
     int [] treeSize;
 
-    public QuickUnionImproved(int N) {
+    public WeightedQuickUnion(int N) {
         super(N);
         treeSize = new int[N];
-     //   IntStream.range(0, N).forEach(i -> sz[i] = 1);
     }
 
     @Override
@@ -15,6 +19,7 @@ public class QuickUnionImproved extends QuickUnion{
         int qRoot = getRoot(q);
 
         if (pRoot == qRoot) return;
+        componentCount--;
 
         if (treeSize[pRoot] < treeSize[qRoot]) {
             id[pRoot] = id[qRoot];
