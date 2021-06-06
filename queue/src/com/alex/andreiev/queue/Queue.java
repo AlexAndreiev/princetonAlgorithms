@@ -1,10 +1,7 @@
 package com.alex.andreiev.queue;
 
 public abstract class Queue<T> implements Iterable<T> {
-    int size = 0;
-
-    public Queue(){
-    }
+    protected int size = 0;
 
     public abstract void enqueue(T item) throws Exception;
 

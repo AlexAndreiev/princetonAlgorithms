@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         InputStream is = QueueLinkedList.class.getResourceAsStream("/queueData.txt");
         Scanner scanner = new Scanner(is);
 
-//        Queue queue = new QueueLinkedList<String>();
-        Queue queue = new QueueArrayImpl<String>();
+//        var queue = new QueueLinkedList<String>();
+        var queue = new QueueArrayImpl<String>();
         while (scanner.hasNext()) {
             String s = scanner.next();
             if (s.equals("-")) {
@@ -28,5 +28,17 @@ public class Main {
                 }
             }
         }
+        System.out.println("Size = " + queue.getSize());
+
+
+        System.out.println("--------------------------");
+//        queue = new QueueLinkedList<String>();
+        queue = new QueueArrayImpl<>();
+        is = Queue.class.getResourceAsStream("/iterableTest.txt");
+        scanner = new Scanner(is);
+        while (scanner.hasNext())
+            queue.enqueue(scanner.next());
+        for (var s: queue)
+            System.out.println(s);
     }
 }

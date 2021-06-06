@@ -17,7 +17,7 @@ public class QueueArrayImpl<T> extends Queue<T> {
 
         if (tail - head == arr.length) // all elements are taken
             rearrange(arr.length * 2);
-        else  if (tail == arr.length && head != 0)
+        else if (tail == arr.length && head != 0)
             rearrange(arr.length); //just move elements to the array's beginning
     }
 
@@ -34,6 +34,11 @@ public class QueueArrayImpl<T> extends Queue<T> {
     @Override
     public boolean isEmpty() {
         return head == tail;
+    }
+
+    @Override
+    public int getSize() {
+        return tail - head;
     }
 
     private void rearrange(int length)
@@ -53,15 +58,16 @@ public class QueueArrayImpl<T> extends Queue<T> {
     }
 
     private class ArrayIterator implements Iterator<T>{
-        private int current = capacity;
+        private int current = head;
+
         @Override
         public boolean hasNext() {
-            return current > 0;
+            return current < tail;
         }
 
         @Override
         public T next() {
-            return s[--current];
+            return arr[current++];
         }
     }
 }
