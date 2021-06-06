@@ -1,4 +1,4 @@
-package com.alex.andreiev.sorting;
+package com.alex.andreiev.twoStackAlg;
 
 import java.io.InputStream;
 import java.util.Scanner;

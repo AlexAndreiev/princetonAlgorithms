@@ -1,5 +1,4 @@
-package com.alex.andreiev.sorting;
-
+package com.alex.andreiev.twoStackAlg;
 
 import com.alex.andreiev.stack.ResizedStackArrayImpl;
 import com.alex.andreiev.stack.Stack;
@@ -8,7 +7,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 import java.util.List;
 
-public class DijkTwoStepAlg {
+public class  DijkTwoStepAlg {
     private static final List operators = Arrays.asList("+", "-", "/", "*") ;
 
     public static double calcExpression(String expression) throws Exception {
