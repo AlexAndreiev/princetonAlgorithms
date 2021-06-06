@@ -8,34 +8,6 @@ import java.util.Random;
 public class SortingAlgorithms {
     private static final int CUTOFF = 7;
 
-    public static void Selection(Comparable[] arr){
-        int len = arr.length;
-        int i = 0;
-        while (i < len-1){
-            int min = i;
-            for (int j = i+1; j < len; j++)
-                if (Utils.less(arr[j], arr[min]))
-                    min = j;
-            Utils.exchange(arr, i, min);
-            i++;
-        }
-    }
-
-    public static void Insertion(Comparable[] arr, int lo, int hi){
-        for (int i = lo; i <= hi; i++)
-            for (int j = i; j > 0; j--)
-                if (Utils.less(arr[j], arr[j-1]))
-                    Utils.exchange(arr, j, j-1);
-                else break;
-    }
-    public static void Insertion(Object[] arr, int lo, int hi, Comparator comparator){
-        for (int i = lo; i <= hi; i++)
-            for (int j = i; j > 0; j--)
-                if (Utils.less(comparator, arr[j], arr[j-1]))
-                    Utils.exchange(arr, j, j-1);
-                else break;
-    }
-
     public static void Shell(Comparable[] arr){
         int N = arr.length;
         int h = 1;
