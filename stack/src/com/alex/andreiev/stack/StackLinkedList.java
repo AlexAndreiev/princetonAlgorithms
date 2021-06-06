@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 //linked-list approach
 // Every operation takes constant time in the worst case.
+// Uses extra time and space to deal with the links
 // A stack with N items uses ~40N bytes
 
 public class StackLinkedList<T> extends Stack<T>{
