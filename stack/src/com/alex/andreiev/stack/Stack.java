@@ -5,14 +5,9 @@ public abstract class Stack<T> implements Iterable<T> {
     public abstract void push(T item);
     public T pop() throws Exception {
         if (isEmpty())
-            throw new Exception("stack is empty");
+            throw new Exception("Stack is empty");
         return null;
     }
-    public boolean isEmpty() { return size == 0;}
-    public int getSize() {return size;}
-
-
-//    iterable
-//    abstract boolean hasNext();
-//    abstract T next();
+    public boolean isEmpty() { return size == 0; }
+    public int getSize() { return size; }
 }

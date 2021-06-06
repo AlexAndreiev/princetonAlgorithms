@@ -10,17 +10,17 @@ public class StackArrayImpl<T> extends Stack<T> {
         this.capacity = capacity;
         s = (T[]) new Object[capacity];
     }
+    @Override
+    public void push(T item) {
+        s[size++] = item;
+    }
 
+    @Override
     public T pop() throws Exception{
         super.pop();
         T item = s[--size];
         s[size] = null;
         return item;
-    }
-
-    @Override
-    public void push(T item) {
-        s[size++] = item;
     }
 
     @Override

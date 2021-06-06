@@ -11,9 +11,9 @@ public class Main {
 
         Scanner scanner = new Scanner(is);
 
-//        Stack stack = new StackOfStringsLinkedList<String>();
+        Stack stack = new StackLinkedList<String>();
 //        Stack stack = new StackOfStringsArrayImpl<String>(10);
-       Stack stack = new ResizedStackArrayImpl<String>();
+//       Stack stack = new ResizedStackArrayImpl<String>();
         while (scanner.hasNext()) {
             String s = scanner.next();
             if (s.equals("-")) {
@@ -26,5 +26,13 @@ public class Main {
             else
                 stack.push(s);
         }
+        System.out.println("--------------------------");
+        stack = new StackLinkedList();
+        is = Stack.class.getResourceAsStream("/iterableTest.txt");
+        scanner = new Scanner(is);
+        while (scanner.hasNext())
+            stack.push(scanner.next());
+        for (var s: stack)
+            System.out.println(s);
     }
 }

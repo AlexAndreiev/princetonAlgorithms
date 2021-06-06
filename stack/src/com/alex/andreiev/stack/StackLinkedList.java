@@ -3,9 +3,13 @@ package com.alex.andreiev.stack;
 import java.util.Iterator;
 
 //linked-list approach
+// Every operation takes constant time in the worst case.
+// A stack with N items uses ~40N bytes
+
 public class StackLinkedList<T> extends Stack<T>{
     private Node first;
 
+    @Override
     public void push(T item){
         Node newNode = new Node();
         newNode.item = item;
@@ -25,7 +29,7 @@ public class StackLinkedList<T> extends Stack<T>{
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new ListIterator();
     }
 
     private class Node
