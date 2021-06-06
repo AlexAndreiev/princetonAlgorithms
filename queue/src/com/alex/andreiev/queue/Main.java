@@ -1,13 +1,14 @@
 package com.alex.andreiev.queue;
 
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
         InputStream is = QueueLinkedList.class.getResourceAsStream("/queueData.txt");
-        Scanner scanner = new Scanner(is);
+        Scanner scanner = new Scanner(Objects.requireNonNull(is));
 
 //        var queue = new QueueLinkedList<String>();
         var queue = new QueueArrayImpl<String>();
@@ -35,7 +36,7 @@ public class Main {
 //        queue = new QueueLinkedList<String>();
         queue = new QueueArrayImpl<>();
         is = Queue.class.getResourceAsStream("/iterableTest.txt");
-        scanner = new Scanner(is);
+        scanner = new Scanner(Objects.requireNonNull(is));
         while (scanner.hasNext())
             queue.enqueue(scanner.next());
         for (var s: queue)

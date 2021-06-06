@@ -32,9 +32,9 @@ public class ResizedStackArrayImpl<T> extends StackArrayImpl<T> {
     }
 
     private void resize(int capacity){
-        T[] copy = (T[]) new Object[capacity];
-        for (int i = 0; i < size; i++)
-            copy[i] = s[i];
+        var copy = (T[]) new Object[capacity];
+        if (size >= 0)
+            System.arraycopy(s, 0, copy, 0, size);
         s = copy;
     }
 }

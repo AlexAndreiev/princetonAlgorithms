@@ -1,6 +1,7 @@
 package com.alex.andreiev.stack;
 
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -9,9 +10,9 @@ public class Main {
 //        System.out.println("Working Directory = " + System.getProperty("user.dir"));
         InputStream is = Stack.class.getResourceAsStream("/stackData.txt");
 
-        Scanner scanner = new Scanner(is);
+        Scanner scanner = new Scanner(Objects.requireNonNull(is));
 
-        Stack stack = new StackLinkedList<String>();
+        var stack = new StackLinkedList<String>();
 //        Stack stack = new StackOfStringsArrayImpl<String>(10);
 //       Stack stack = new ResizedStackArrayImpl<String>();
         while (scanner.hasNext()) {
@@ -27,9 +28,9 @@ public class Main {
                 stack.push(s);
         }
         System.out.println("--------------------------");
-        stack = new StackLinkedList();
+        stack = new StackLinkedList<>();
         is = Stack.class.getResourceAsStream("/iterableTest.txt");
-        scanner = new Scanner(is);
+        scanner = new Scanner(Objects.requireNonNull(is));
         while (scanner.hasNext())
             stack.push(scanner.next());
         for (var s: stack)

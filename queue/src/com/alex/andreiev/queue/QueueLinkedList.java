@@ -23,8 +23,8 @@ public class QueueLinkedList<T> extends Queue<T> {
 
     @Override
     public T dequeue() throws Exception {
-        T item = super.dequeue();
-        item = first.item;
+        super.dequeue();
+        var item = first.item;
         first = first.next;
         if (isEmpty())  // special case for empty queue
             last = null;

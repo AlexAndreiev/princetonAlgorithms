@@ -1,19 +1,17 @@
 package com.alex.andreiev.twoStackAlg;
 
 import com.alex.andreiev.stack.ResizedStackArrayImpl;
-import com.alex.andreiev.stack.Stack;
-
 import java.util.Arrays;
 import java.util.StringTokenizer;
 import java.util.List;
 
 public class  DijkTwoStepAlg {
-    private static final List operators = Arrays.asList("+", "-", "/", "*") ;
+    private static final List<String> operators = Arrays.asList("+", "-", "/", "*") ;
 
     public static double calcExpression(String expression) throws Exception {
         StringTokenizer tokenizer = new StringTokenizer(expression, " \\+-*/()", true);
-        Stack<Double> valueStack = new ResizedStackArrayImpl();
-        Stack<String> operatorStack = new ResizedStackArrayImpl();
+        var valueStack = new ResizedStackArrayImpl<Double>();
+        var operatorStack = new ResizedStackArrayImpl<String>();
 
         while (tokenizer.hasMoreTokens()){
             String token = tokenizer.nextToken();

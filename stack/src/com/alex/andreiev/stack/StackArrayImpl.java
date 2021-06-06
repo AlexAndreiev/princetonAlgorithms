@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class StackArrayImpl<T> extends Stack<T> {
     protected T[] s;
-    private int capacity;
+    private final int capacity;
 
     public StackArrayImpl(int capacity){
         this.capacity = capacity;
