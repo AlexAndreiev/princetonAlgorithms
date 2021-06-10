@@ -2,6 +2,14 @@ package com.alex.andreiev.sorting;
 
 import com.alex.andreiev.utils.Utils;
 
+/*
+    Worst case performance O(n2)
+    Best case performance O(n)
+    Average case performance O(n2)
+    Worst case space complexity O(n) total, O(1) auxiliary
+    Stable
+* */
+
 public class BubbleSort {
 
     public static void sort(Comparable[] arr) {

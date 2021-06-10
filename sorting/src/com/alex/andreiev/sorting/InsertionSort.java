@@ -3,7 +3,15 @@ package com.alex.andreiev.sorting;
 import com.alex.andreiev.utils.Utils;
 import java.util.Comparator;
 
-// To sort a randomly-order array with distinct keys, insertion sort uses ~1/4N2 compares and ~1/4N2 exchanges on average
+/*
+    To sort a randomly-order array with distinct keys, insertion sort uses ~1/4N2 compares and ~1/4N2 exchanges on average
+    Worst case performance O(n2)
+    Best case performance O(n)
+    Average case performance O(n2)
+    Worst case space complexity O(n) total, O(1) auxiliary
+    Stable
+* */
+
 public class InsertionSort {
 
     public static void sort(Comparable[] arr, int lo, int hi){
