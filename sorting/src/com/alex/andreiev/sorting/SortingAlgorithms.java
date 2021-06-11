@@ -8,22 +8,6 @@ import java.util.Random;
 public class SortingAlgorithms {
     private static final int CUTOFF = 7;
 
-    public static void Shell(Comparable[] arr){
-        int N = arr.length;
-        int h = 1;
-        while (h < N/3)
-            h = 3*h + 1; // 1, 4, 13, 20,121, 364, ...
-        while (h >= 1)
-        {// h-sort the array
-            for (int i = h; i < N; i++){
-                for (int j = i; j >= h && Utils.less(arr[j], arr[j-h]); j -= h) {
-                    Utils.exchange(arr, j, j - h);
-                }
-            }
-            h = h/3;
-        }
-    }
-
     public static void MergeSort(Comparable[] arr){
         int len = arr.length;
         var aux = new Comparable[len];
