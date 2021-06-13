@@ -2,7 +2,6 @@ package com.alex.andreiev.sorting;
 
 import com.alex.andreiev.utils.Utils;
 
-import java.util.Comparator;
 import java.util.Random;
 
 public class SortingAlgorithms {
@@ -12,8 +11,7 @@ public class SortingAlgorithms {
         int len = arr.length;
         var aux = new Comparable[len];
         //improvement3
-        for (int i = 0; i < len; i++)
-            aux[i] = arr[i];
+        System.arraycopy(arr, 0, aux, 0, len);
         sort(arr, aux, 0, len -1);
     }
 
@@ -29,11 +27,13 @@ public class SortingAlgorithms {
     private static void sort(Comparable[] arr, Comparable[] aux, int lo, int hi){
         if (hi <= lo) return;
 //         improvement1
-//        if (hi <= lo + CUTOFF - 1){
-//            Insertion(arr, lo, hi);
-//            return;
-//        }
-        //----
+/*
+        if (hi <= lo + CUTOFF - 1){
+            Insertion(arr, lo, hi);
+            return;
+        }
+*/
+
         int mid = lo + (hi-lo) /2;
 //        sort(arr, aux, lo, mid);
 //        sort(arr, aux, mid+1, hi);
@@ -51,8 +51,8 @@ public class SortingAlgorithms {
     public static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi){
         assert isSorted(a, lo, mid); // precondition a[lo..mid] sorted
         assert isSorted(a, mid+1, hi); // precondition a[mid+1..hi] sorted
-        for (int k = lo; k <= hi; k++)
-            aux[k] = a[k];
+        if (hi + 1 - lo >= 0)
+            System.arraycopy(a, lo, aux, lo, hi + 1 - lo);
 
         int i = lo;
         int j = mid+1;
@@ -154,9 +154,11 @@ public class SortingAlgorithms {
 //        exchange(arr, lo, m);
 
 //improvement3 - effective with duplicates
-//        var threeWayPart = ThreeWayPartition(arr, lo, hi);
-//        sortQuickSort(arr, lo, threeWayPart.lt - 1);
-//        sortQuickSort(arr, threeWayPart.gt + 1, hi);
+/*
+        var threeWayPart = ThreeWayPartition(arr, lo, hi);
+        sortQuickSort(arr, lo, threeWayPart.lt - 1);
+        sortQuickSort(arr, threeWayPart.gt + 1, hi);
+*/
         int j = partition(arr, lo, hi);
         sortQuickSort(arr, lo, j-1);
         sortQuickSort(arr, j+1, hi);
