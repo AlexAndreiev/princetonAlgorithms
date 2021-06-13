@@ -1,5 +1,7 @@
 package com.alex.andreiev.sorting;
 
+import static com.alex.andreiev.utils.Utils.*;
+
 /* Invented in 1959
     Move entries more than one position at a time by h-sorting the array
 *   Why insertion sort?
@@ -10,8 +12,6 @@ package com.alex.andreiev.sorting;
     Tiny, fixed footprint for code (used in some embedded systems
     Hardware sort prototype
 * */
-
-import com.alex.andreiev.utils.Utils;
 
 public class ShellSort {
 
@@ -24,8 +24,8 @@ public class ShellSort {
         {// h-sort the array
             for (int i = h; i < N; i++)        // insertion sort
             {
-                for (int j = i; j >= h && Utils.less(arr[j], arr[j - h]); j -= h)
-                    Utils.exchange(arr, j, j - h);
+                for (int j = i; j >= h && less(arr[j], arr[j - h]); j -= h)
+                    exchange(arr, j, j - h);
             }
             h = h/3;        //move to the next increment
         }

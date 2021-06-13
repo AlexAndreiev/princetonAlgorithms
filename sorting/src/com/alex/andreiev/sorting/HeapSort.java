@@ -1,5 +1,5 @@
 package com.alex.andreiev.sorting;
-import com.alex.andreiev.utils.Utils;
+import static com.alex.andreiev.utils.Utils.*;
 
 // In-place sorting algorithm with N log N worst-case
 // - Mergesort: no, linear extra space - in-place merge possible, not practical
@@ -32,7 +32,7 @@ public class HeapSort {
     // leave in array, instead of nulling out
     private static void sortDown(Comparable[] arr){
         while(N > 1){
-            Utils.exchange(arr, 1, N--);
+            exchange(arr, 1, N--);
             com.alex.andreiev.pq.Utils.sink(arr, 1, N);
         }
     }

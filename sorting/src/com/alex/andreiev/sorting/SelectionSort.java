@@ -1,6 +1,6 @@
 package com.alex.andreiev.sorting;
 
-import com.alex.andreiev.utils.Utils;
+import static com.alex.andreiev.utils.Utils.*;
 
 /*
  Selection sort uses (N-1) + (N-2) + ... + 1 + 0 ~ N2/2 compares and N exchanges
@@ -22,10 +22,10 @@ public class SelectionSort {
         for (int i = 0; i < len; i++) {
             int min = i;
             for (int j = i + 1; j < len; j++) {
-                if (Utils.less(arr[j], arr[min]))
+                if (less(arr[j], arr[min]))
                     min = j;
             }
-            Utils.exchange(arr, i, min);
+            exchange(arr, i, min);
         }
     }
 }

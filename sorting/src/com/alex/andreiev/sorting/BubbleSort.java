@@ -1,7 +1,6 @@
 package com.alex.andreiev.sorting;
 
-import com.alex.andreiev.utils.Utils;
-
+import static com.alex.andreiev.utils.Utils.*;
 /*
     Worst case performance O(n2)
     Best case performance O(n)
@@ -16,7 +15,7 @@ public class BubbleSort {
         int n = arr.length;
         for (int i = 0; i < n-1; i++)
             for (int j = 0; j < n-i-1; j++)
-                if (Utils.less(arr[j+1], arr[j]))
-                    Utils.exchange(arr, j, j+1);
+                if (less(arr[j+1], arr[j]))
+                    exchange(arr, j, j+1);
     }
 }

@@ -1,8 +1,8 @@
 package com.alex.andreiev.sorting;
 
-import com.alex.andreiev.utils.Utils;
-
 import java.util.Random;
+
+import static com.alex.andreiev.utils.Utils.*;
 
 public class SortingAlgorithms {
     private static final int CUTOFF = 7;
@@ -59,7 +59,7 @@ public class SortingAlgorithms {
         for (int k = lo; k <= hi; k++){
             if (i > mid)                    a[k] = aux[j++];
             else if (j > hi)                a[k] = aux[i++];
-            else if (Utils.less(aux[j], aux[i]))  a[k] = aux[j++];
+            else if (less(aux[j], aux[i]))  a[k] = aux[j++];
             else                            a[k] = aux[i++];
         }
         assert isSorted(a, lo, hi);
@@ -73,40 +73,25 @@ public class SortingAlgorithms {
         for (int k = lo; k <= hi; k++){
             if (i > mid)                    aux[k] = a[j++];
             else if (j > hi)                aux[k] = a[i++];
-            else if (Utils.less(a[j], a[i]))      aux[k] = a[j++];
+            else if (less(a[j], a[i]))      aux[k] = a[j++];
             else                            aux[k] = a[i++];
         }
         assert isSorted(a, lo, hi);
     }
 
-    private static boolean isSorted(Comparable[] arr)
-    {
-        for (int i = 1; i < arr.length; i++)
-            if (Utils.less(arr[i], arr[i-1]))
-                return false;
-        return true;
-    }
-    private static boolean isSorted(Comparable[] arr, int start, int end)
-    {
-        for (int i = start; i < end; i++)
-            if (Utils.less(arr[i], arr[i-1]))
-                return false;
-        return true;
-    }
-
     private static int partition(Comparable[] arr, int lo, int hi){
         int i = lo, j = hi+1;
         while (true){
-            while (Utils.less(arr[++i], arr[lo])) // find item on left swap
+            while (less(arr[++i], arr[lo])) // find item on left swap
                 if (i == hi) break;
 
-            while (Utils.less(arr[lo], arr[--j])) // find item on right to swap
+            while (less(arr[lo], arr[--j])) // find item on right to swap
                 if (j == lo) break;
 
             if (i >= j) break; // check if pointers cross
-            Utils.exchange(arr, i, j); // swap
+            exchange(arr, i, j); // swap
         }
-        Utils.exchange(arr, lo, j); // swap with partitioning item
+        exchange(arr, lo, j); // swap with partitioning item
         return j;   // return index of item now know to be in place
     }
 
@@ -116,8 +101,8 @@ public class SortingAlgorithms {
         int i = lo;
         while(i <= gt){
             int cmp = arr[i].compareTo(v);
-            if (cmp < 0)        Utils.exchange(arr, lt++, i++);
-            else if (cmp > 0)   Utils.exchange(arr, i, gt--);
+            if (cmp < 0)        exchange(arr, lt++, i++);
+            else if (cmp > 0)   exchange(arr, i, gt--);
             else                i++;
         }
         var res = new ThreeWayPart();
