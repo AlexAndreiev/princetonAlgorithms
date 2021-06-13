@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/3Sum/3Sum.iml" filepath="$PROJECT_DIR$/3Sum/3Sum.iml" />
       <module fileurl="file://$PROJECT_DIR$/BouncingBalls/BouncingBalls.iml" filepath="$PROJECT_DIR$/BouncingBalls/BouncingBalls.iml" />
       <module fileurl="file://$PROJECT_DIR$/Dynamic_connectivity/Dynamic_connectivity.iml" filepath="$PROJECT_DIR$/Dynamic_connectivity/Dynamic_connectivity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GrahamScan/GrahamScan.iml" filepath="$PROJECT_DIR$/GrahamScan/GrahamScan.iml" />
       <module fileurl="file://$PROJECT_DIR$/Searching/Searching.iml" filepath="$PROJECT_DIR$/Searching/Searching.iml" />
       <module fileurl="file://$PROJECT_DIR$/dijkstra_2stack_alg/dijkstra_2stack_alg.iml" filepath="$PROJECT_DIR$/dijkstra_2stack_alg/dijkstra_2stack_alg.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/princetonAlgorithms.iml" filepath="$PROJECT_DIR$/.idea/princetonAlgorithms.iml" />

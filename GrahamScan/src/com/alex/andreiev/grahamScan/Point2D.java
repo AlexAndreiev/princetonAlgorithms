@@ -1,8 +1,9 @@
-package com.alex.andreiev.sorting;
+package com.alex.andreiev.grahamScan;
 
 import java.util.Comparator;
 
 public class Point2D {
+
     public final Comparator<Point2D> POLAR_ORDER = new PolarOrder();
 
     private final double x, y;
@@ -11,6 +12,13 @@ public class Point2D {
         this.x = x;
         this.y = y;
     }
+
+    /* Given three points a, b, c, is a->b->c a counterclockwise turn?
+    * Determinant (or cross product) gives 2x signed area of planar triangle
+    *                       |ax  ay  1|
+    * 2 x Area(a,b,c) =     |bx  by  1| = (bx-ax)(cy-ay)-(by-ay)(cx-ax)
+    *                       |cx  cy  1|                  //(b-a) * (c-a)
+    * */
 
     public static int ccw(Point2D a, Point2D b, Point2D c){
         double area2 = (b.x - a.x)*(c.y - a.y) - (b.y -a.y)*(c.x-a.x);
@@ -30,5 +38,4 @@ public class Point2D {
             else return -ccw(Point2D.this, q1, q2); // no access invoking point within inner class
         }
     }
-
 }
