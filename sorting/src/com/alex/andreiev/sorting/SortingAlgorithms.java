@@ -79,12 +79,6 @@ public class SortingAlgorithms {
         assert isSorted(a, lo, hi);
     }
 
-    public static void KnuthShuffle(Comparable[] arr){
-        var r = new Random();
-        for (int i = 1; i < arr.length; i++)
-            Utils.exchange(arr, i, r.nextInt(i));
-    }
-
     private static boolean isSorted(Comparable[] arr)
     {
         for (int i = 1; i < arr.length; i++)
