@@ -1,6 +1,7 @@
 package com.alex.andreiev.utils;
 
 import java.util.Comparator;
+import java.util.Random;
 
 public class Utils {
 
@@ -36,5 +37,15 @@ public class Utils {
             if (Utils.less(arr[i], arr[i-1]))
                 return false;
         return true;
+    }
+
+    public static void shuffleArr(Comparable[] arr){
+        var rand = new Random();
+        for (int i = 0; i < arr.length; i++){
+            int randIndexTpSwap = rand.nextInt(arr.length);
+            Comparable temp = arr[randIndexTpSwap];
+            arr[randIndexTpSwap] = arr[i];
+            arr[i] = temp;
+        }
     }
 }
