@@ -33,7 +33,7 @@ public class QuickSort {
 
     private static final int CUTOFF = 7;
 
-    public static void QuickSort(Comparable[] arr){
+    public static void sort(Comparable[] arr){
 /*       shuffle needed for performance guarantee
          probabilistic guarantee against worst case
          basic for math model that can be validated with experiments
@@ -41,6 +41,16 @@ public class QuickSort {
         shuffleArr(arr);
         sort(arr, 0, arr.length-1);
     }
+
+    public static void threeWaySort(Comparable[] arr){
+/*       shuffle needed for performance guarantee
+         probabilistic guarantee against worst case
+         basic for math model that can be validated with experiments
+*/
+        shuffleArr(arr);
+        threeWaySort(arr, 0, arr.length-1);
+    }
+
 
     private static void sort(Comparable[] arr, int lo, int hi){
         if (hi <= lo) return;
@@ -62,12 +72,6 @@ public class QuickSort {
 //        int m = medianOf(a, lo, lo + (hi-lo)/2, hi);
 //        exchange(arr, lo, m);
 
-//improvement3 - effective with duplicates
-/*
-        var threeWayPart = ThreeWayPartition(arr, lo, hi);
-        sortQuickSort(arr, lo, threeWayPart.lt - 1);
-        sortQuickSort(arr, threeWayPart.gt + 1, hi);
-*/
         int j = partition(arr, lo, hi);
         sort(arr, lo, j-1);
         sort(arr, j+1, hi);
@@ -78,7 +82,7 @@ public class QuickSort {
         int i = lo, j = hi+1;
         while (true) {
             while (less(arr[++i], arr[lo])) // find item on left swap
-                if (i == hi) break;
+                if (i  ==hi) break;
 
             while (less(arr[lo], arr[--j])) // find item on right to swap
                 if (j == lo) break;
@@ -119,5 +123,34 @@ public class QuickSort {
             else            return arr[k];
         }
         return arr[k];
+    }
+
+    /* Goal. Partition array into 3 parts so that:
+    *  - Entries between lt and gt equal to partition item v
+    *  - No larger entries to left of lt
+    *  - No smaller entries to right of gt
+    * */
+    /*
+        improvement3 - effective with duplicates
+         - stop scans on items equal to the partitioning item
+
+        var threeWayPart = ThreeWayPartition(arr, lo, hi);
+        sort(arr, lo, threeWayPart.lt - 1);
+        sort(arr, threeWayPart.gt + 1, hi);
+*/
+    private static void threeWaySort(Comparable[] arr, int lo, int hi){
+        if (hi <= lo) return;
+        int lt = lo, gt = hi;
+        Comparable v = arr[lo];
+        int i = lo;
+        while(i <= gt){
+            int cmp = arr[i].compareTo(v);
+            if (cmp < 0)        exchange(arr, lt++, i++);
+            else if (cmp > 0)   exchange(arr, i, gt--);
+            else                i++;
+        }
+
+        threeWaySort(arr, lo, lt -1);
+        threeWaySort(arr, gt + 1, hi);
     }
 }

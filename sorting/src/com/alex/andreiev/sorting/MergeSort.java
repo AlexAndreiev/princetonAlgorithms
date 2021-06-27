@@ -14,7 +14,7 @@ public class MergeSort {
 
     private static final int CUTOFF = 7;
 
-    public static void MergeSort(Comparable[] arr){
+    public static void sort(Comparable[] arr){
         int len = arr.length;
         var aux = new Comparable[len];
         //improvement3
