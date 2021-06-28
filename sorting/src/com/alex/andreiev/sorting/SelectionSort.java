@@ -3,7 +3,7 @@ package com.alex.andreiev.sorting;
 import static com.alex.andreiev.utils.Utils.*;
 
 /*
- Selection sort uses (N-1) + (N-2) + ... + 1 + 0 ~ N2/2 compares and N exchanges
+ Selection sort uses (N-1) + (N-2) + ... + 1 + 0 ~ (N^2)/2 compares and N exchanges
  Running time insensitive to input. Quadratic time, even if input is sorted
  Data movements is minimal. Linear number of exchanges
     Worst case performance O(n2)

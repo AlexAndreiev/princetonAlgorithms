@@ -24,8 +24,11 @@ public class ShellSort {
         {// h-sort the array
             for (int i = h; i < N; i++)        // insertion sort
             {
-                for (int j = i; j >= h && less(arr[j], arr[j - h]); j -= h)
+                for (int j = i; j >= h; j -= h) {
+                    if (!less(arr[j], arr[j - h]))
+                        break;
                     exchange(arr, j, j - h);
+                }
             }
             h = h/3;        //move to the next increment
         }
