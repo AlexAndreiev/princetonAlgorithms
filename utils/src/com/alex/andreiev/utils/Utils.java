@@ -72,11 +72,11 @@ public class Utils {
     * Power struggle. Better subordinate promoted
     * */
     public static void sink(Comparable[] arr, int k, int N) {
-        while (2*k <= N)
+        while (2*k <= N) // 3*k - first child index
         {
             int j = 2*k;
             //grab larger child
-            if (j<N && less(arr[j], arr[j+1]))  // children of node at k are 2k and 2k+1
+            if (j < N && less(arr[j], arr[j+1]))  // children of node at k are 2k and 2k+1
                 j++;
             if (!less(arr[k], arr[j])) break;
             exchange(arr, k, j);

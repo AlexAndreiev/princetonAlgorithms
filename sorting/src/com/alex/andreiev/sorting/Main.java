@@ -31,7 +31,8 @@ public class Main {
 //        SortingAlgorithms.QuickSort(arr);
 //        BubbleSort.sort(arr);
 //        ShellSort.sort(arr);
-        QuickSort.threeWaySort(arr);
+//        QuickSort.threeWaySort(arr);
+        HeapSort.sort(arr);
         for (double d : arr)
             System.out.println(d);
 //        double max = (double) SortingAlgorithms.Select(arr, arr.length-3);
