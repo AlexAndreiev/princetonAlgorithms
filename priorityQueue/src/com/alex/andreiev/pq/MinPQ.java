@@ -11,12 +11,12 @@ public class MinPQ <Key extends Comparable<Key>> extends BasePQ<Key> {
     }
 
     public Key delete() {
-
+        return null;
     }
 
 
     public Key get() {
-
+        return null;
     }
 
 }
