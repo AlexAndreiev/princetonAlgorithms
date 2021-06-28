@@ -19,7 +19,7 @@ public class UnorderedMaxPQ <Key extends Comparable<Key>> implements PQ<Key>{
     @Override
     public Key delete() {
         int max = getMaxIndex();
-        Utils.exchange(max, N-1);
+        Utils.exchange(pq, max, N-1);
         return pq[--N];     // null out entry to prevent loitering
     }
 
@@ -44,7 +44,7 @@ public class UnorderedMaxPQ <Key extends Comparable<Key>> implements PQ<Key>{
     private int getMaxIndex() {
         int max = 0;
         for (int i = 1; i < N; i++) {
-            if (Utils.less(max, i))
+            if (Utils.less(pq[max], pq[i]))
                 max = i;
         }
         return max;

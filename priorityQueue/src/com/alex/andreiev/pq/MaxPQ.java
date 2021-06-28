@@ -1,6 +1,6 @@
 package com.alex.andreiev.pq;
 
-import com.alex.andreiev.utils.Utils;
+import static com.alex.andreiev.utils.Utils.*;
 
 public class MaxPQ<Key extends Comparable<Key>> extends BasePQ<Key>{
 
@@ -8,15 +8,21 @@ public class MaxPQ<Key extends Comparable<Key>> extends BasePQ<Key>{
         super(capacity);
     }
 
+    /* Add node at end, then swim it up
+    * At most 1+lgN compares
+    * */
     public void insert(Key x){
         pq[++N] = x;
-        com.alex.andreiev.pq.Utils.swim(pq, N);
+        swim(pq, N);
     }
 
+    /* Exchange root with node at end, then sink it down
+    * At most 2lgN compares
+    * */
     public Key delete(){
         Key max = pq[1];
-        Utils.exchange(pq, 1, N--);
-        com.alex.andreiev.pq.Utils.sink(pq,1, N);
+        exchange(pq, 1, N--);
+        sink(pq,1, N);
         pq[N+1] = null; // prevent loitering
         return max;
     }

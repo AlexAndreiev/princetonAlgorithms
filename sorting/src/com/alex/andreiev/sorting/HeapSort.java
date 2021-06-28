@@ -25,7 +25,7 @@ public class HeapSort {
     // build heap using bottom-up method
     private static void heapConstruction(Comparable[] arr){
         for (int k = N/2; k >= 1; k--)
-            com.alex.andreiev.pq.Utils.sink(arr, k, N);
+            sink(arr, k, N);
     }
 
     // remove the maximum, one at a time
@@ -33,7 +33,7 @@ public class HeapSort {
     private static void sortDown(Comparable[] arr){
         while(N > 1){
             exchange(arr, 1, N--);
-            com.alex.andreiev.pq.Utils.sink(arr, 1, N);
+            sink(arr, 1, N);
         }
     }
 
