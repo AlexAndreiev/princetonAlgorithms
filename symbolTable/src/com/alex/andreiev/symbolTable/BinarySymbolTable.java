@@ -41,7 +41,6 @@ public class BinarySymbolTable<Key extends Comparable<Key>, Value> implements IS
         return null;
     }
 
-
     @Override
     public void delete(Key key) {
         root = delete(root, key);

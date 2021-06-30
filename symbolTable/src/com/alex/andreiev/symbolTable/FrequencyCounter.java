@@ -3,6 +3,11 @@ package com.alex.andreiev.symbolTable;
 import java.io.InputStream;
 import java.util.Scanner;
 
+/*Read a sequence of strings from standard input and print out one that occurs with highest frequency
+* arguments:
+*   - minLen string for tracking
+* */
+
 public class FrequencyCounter {
 
     public static void main(String[] args) {

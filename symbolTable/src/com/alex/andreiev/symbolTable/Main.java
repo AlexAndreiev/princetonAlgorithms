@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
+//    Build ST associating value i with ith string from standard input
     public static void main(String[] args) {
         InputStream is = SymbolTable.class.getResourceAsStream("/test.txt");
         var st = new SymbolTable<String, Integer>();
