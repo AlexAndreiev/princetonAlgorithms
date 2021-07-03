@@ -7,10 +7,20 @@ import java.awt.event.KeyEvent;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class BinarySymbolTable<Key extends Comparable<Key>, Value> implements ISymbolTable<Key, Value> {
+/* BST - Binary Search Tree
+* Proposition. If N distinct keys are inserted into a BST in random order,
+* the expected number of compares for a search/insert is ~2 ln N.
+* If N distinct keys are inserted in random order, expected height if tree is ~4,311 ln N
+* But... Worst-case height is N (exponentially small chance when keys are inserted in random order)
+* */
+
+public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements ISymbolTable<Key, Value> {
 
     private Node<Key, Value> root;
 
+    /* if less, go left; if greater, fo right; if null, insert
+    * Cost. Number of compares is equal to 1+ depth of node
+     */
     @Override
     public void put(Key key, Value val) {
         root = put(root, key, val);
@@ -29,6 +39,9 @@ public class BinarySymbolTable<Key extends Comparable<Key>, Value> implements IS
         return x;
     }
 
+    /*Search. If less, go left; if greater, go right; if equal, search hit
+    * Cost. Number of compares is equal to 1+ depth of node
+    * */
     @Override
     public Value get(Key key) {
         var x = root;
@@ -46,10 +59,20 @@ public class BinarySymbolTable<Key extends Comparable<Key>, Value> implements IS
         root = delete(root, key);
     }
 
-    // Hibbard deletion
-    // Unsatisfactory solution. Not symmetric
-    // Surprising consequence. Trees not random (!) - sqrt(N) per op.
-    // Longstanding open problem. Simple and efficient delete for BSTs
+    /* Hibbard deletion - to delete a node with key k: search for note t containing key k
+    * Case 0. [0 children] Delete t by setting parent link to null
+    * Case 1. [1 child] Delete t by replacing parent link.
+    * Case 2. [2 children]
+    *   Find successor x of t.  (x has no left child))
+    *   Delete the minimum in t's right subtree     (but don't garbage collect x)
+    *   Put x in t's spot       (still a BST)
+    */
+
+/*
+     Unsatisfactory solution. Not symmetric
+     Surprising consequence. Trees not random (!) - sqrt(N) per op.
+     Longstanding open problem. Simple and efficient delete for BSTs
+*/
     private Node<Key, Value> delete( Node<Key, Value> x, Key key){
         if (x == null) return null;
         int cmp = key.compareTo(x.key);
@@ -83,6 +106,10 @@ public class BinarySymbolTable<Key extends Comparable<Key>, Value> implements IS
         return (x == null) ? 0 : x.count;
     }
 
+    /* Traverse left subtree
+    * Enqueue key
+    * Traverse right subtree
+    * */
     @Override
     public Iterable<Key> keys() {
         var q = new QueueArrayImpl<Key>();
@@ -93,7 +120,8 @@ public class BinarySymbolTable<Key extends Comparable<Key>, Value> implements IS
         }
         return q;
     }
-    
+
+    // inorder traversal of a BST yields keys in ascending order
     private void inorder(Node<Key, Value> x, Queue q) throws Exception {
         if (x == null) return;
         inorder(x.left, q);
@@ -141,6 +169,15 @@ public class BinarySymbolTable<Key extends Comparable<Key>, Value> implements IS
         return x;
     }
 
+
+    /* Case 1. [k equals the key at root]
+    *   The floor of k is k
+    * Case 2. [k is less than the key at root]
+    *   The floor of k is in the left subtree
+    * Case 3. [k is greater than the key at root]
+    *   The floor of k is in the right subtree (if there is any key <= k in right subtree);
+    *   otherwise it is the key in the root
+    * */
     @Override
     public Key floor(Key key) {
         var x = floor(root, key);

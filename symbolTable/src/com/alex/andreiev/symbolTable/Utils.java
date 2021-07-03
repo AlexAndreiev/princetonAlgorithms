@@ -4,6 +4,7 @@ import java.security.Key;
 
 public class Utils {
 
+    // numbers of keys < key
     public static int rank(Comparable[] arr, Comparable key, int N){
         int lo = 0;
         int hi = N-1;

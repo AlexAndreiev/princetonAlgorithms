@@ -12,21 +12,21 @@ public class FrequencyCounter {
 
     public static void main(String[] args) {
         int minLen = Integer.parseInt(args[0]);
-        InputStream is = SymbolTable.class.getResourceAsStream("/test.txt");
-        Scanner scanner = new Scanner(is);
+        var is = SymbolTable.class.getResourceAsStream("/tinyTale.txt");
+        var scanner = new Scanner(is);
         var st = new SymbolTable<String, Integer>();
 
         while (scanner.hasNextLine()){
-            String word = scanner.nextLine();
+            var word = scanner.nextLine();
             if (word.length() < minLen) continue;
             if (!st.contains(word))
                 st.put(word, 1);
             else
                 st.put(word, st.get(word) + 1);
         }
-        String max = "";
+        var max = "";
         st.put(max, 0);
-        for (String word : st.keys()){
+        for (var word : st.keys()){
             if (st.get(word) > st.get(max))
                 max = word;
         }
