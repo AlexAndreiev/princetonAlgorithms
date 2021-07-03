@@ -2,10 +2,7 @@ package com.alex.andreiev.symbolTable;
 
 import com.alex.andreiev.queue.Queue;
 import com.alex.andreiev.queue.QueueArrayImpl;
-
-import java.awt.event.KeyEvent;
-import java.util.Collection;
-import java.util.Iterator;
+import com.alex.andreiev.utils.BinaryComparableNode;
 
 /* BST - Binary Search Tree
 * Proposition. If N distinct keys are inserted into a BST in random order,
@@ -14,9 +11,9 @@ import java.util.Iterator;
 * But... Worst-case height is N (exponentially small chance when keys are inserted in random order)
 * */
 
-public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements ISymbolTable<Key, Value> {
+public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements IOrderedST<Key, Value> {
 
-    private Node<Key, Value> root;
+    private BinaryComparableNode<Key, Value> root;
 
     /* if less, go left; if greater, fo right; if null, insert
     * Cost. Number of compares is equal to 1+ depth of node
@@ -26,8 +23,8 @@ public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements ISymb
         root = put(root, key, val);
     }
 
-    private Node<Key, Value> put(Node<Key, Value> x, Key key, Value value){
-        if (x == null) return new Node(key, value);
+    private BinaryComparableNode<Key, Value> put(BinaryComparableNode<Key, Value> x, Key key, Value value){
+        if (x == null) return new BinaryComparableNode(key, value);
         int cmp = key.compareTo(x.key);
         if (cmp < 0)
             x.left = put(x.left, key, value);
@@ -73,7 +70,7 @@ public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements ISymb
      Surprising consequence. Trees not random (!) - sqrt(N) per op.
      Longstanding open problem. Simple and efficient delete for BSTs
 */
-    private Node<Key, Value> delete( Node<Key, Value> x, Key key){
+    private BinaryComparableNode<Key, Value> delete(BinaryComparableNode<Key, Value> x, Key key){
         if (x == null) return null;
         int cmp = key.compareTo(x.key);
         if (cmp < 0) x.left = delete(x, key);   // search for key
@@ -83,7 +80,7 @@ public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements ISymb
             if (x.left == null) return x.right; // no left child
 
             // replace with successor
-            Node t = x;
+            BinaryComparableNode t = x;
             x = min(t.right);
             x.right = deleteMin(t.right);
             x.left = t.left;
@@ -102,7 +99,7 @@ public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements ISymb
         return size(root);
     }
 
-    public int size(Node<Key, Value> x) {
+    public int size(BinaryComparableNode<Key, Value> x) {
         return (x == null) ? 0 : x.count;
     }
 
@@ -121,8 +118,13 @@ public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements ISymb
         return q;
     }
 
+    @Override
+    public Iterable<Key> keys(Key lo, Key hi) {
+        return null;
+    }
+
     // inorder traversal of a BST yields keys in ascending order
-    private void inorder(Node<Key, Value> x, Queue q) throws Exception {
+    private void inorder(BinaryComparableNode<Key, Value> x, Queue q) throws Exception {
         if (x == null) return;
         inorder(x.left, q);
         q.enqueue(x.key);
@@ -144,7 +146,7 @@ public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements ISymb
         return rank(key, root);
     }
 
-    private int rank(Key key, Node<Key, Value> x){
+    private int rank(Key key, BinaryComparableNode<Key, Value> x){
         if (x == null) return 0;
         int cmp = key.compareTo(x.key);
         if (cmp < 0) return rank(key, x.left);
@@ -162,13 +164,37 @@ public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements ISymb
         root = deleteMin(root);
     }
 
-    private Node<Key, Value> deleteMin(Node<Key, Value> x){
+    @Override
+    public void deleteMax() {
+
+    }
+
+    @Override
+    public int size(Key lo, Key hi) {
+        return 0;
+    }
+
+    private BinaryComparableNode<Key, Value> deleteMin(BinaryComparableNode<Key, Value> x){
         if (x.left == null) return x;
         x.left = deleteMin(x.left);
         x.count = 1 + size(x.left) + size(x.right);
         return x;
     }
 
+
+    @Override
+    public Key min() {
+        return null;
+    }
+
+    private BinaryComparableNode min(BinaryComparableNode parentNode) {
+        return null;
+    }
+
+    @Override
+    public Key max() {
+        return null;
+    }
 
     /* Case 1. [k equals the key at root]
     *   The floor of k is k
@@ -185,7 +211,7 @@ public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements ISymb
         return x.key;
     }
 
-    private Node<Key, Value> floor(Node<Key, Value> x, Key key)
+    private BinaryComparableNode<Key, Value> floor(BinaryComparableNode<Key, Value> x, Key key)
     {
         if (x == null) return null;
         int cmp = key.compareTo(x.key);

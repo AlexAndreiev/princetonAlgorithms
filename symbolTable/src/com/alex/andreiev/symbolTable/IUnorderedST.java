@@ -22,7 +22,7 @@ package com.alex.andreiev.symbolTable;
 *
 * */
 
-public interface ISymbolTable<Key extends Comparable<Key>, Value> {
+public interface IUnorderedST<Key, Value> {
 
     void put(Key key, Value val);
     Value get(Key key);
@@ -30,17 +30,4 @@ public interface ISymbolTable<Key extends Comparable<Key>, Value> {
     boolean isEmpty();
     int size();     // number of key-value pairs
     boolean contains(Key key);
-
-    //comparable extended ordered operations
-//    Key min();
-//    Key max();
-    Key floor(Key key); // largest key less than or equal to key
-    Key ceiling(Key key);   // smallest key greater than or equal to key
-    int rank(Key key);  // number of keys less than key
-    Key select(int k);  // key of rank k
-    void deleteMin();
-//    void deleteMax();
-//    int size(Key lo, Key hi); // number of keys in [lo..hi]
-    Iterable<Key> keys();   // all keys in the table, in sorted order
-//    Iterable<Key> keys(Key lo, Key hi); // key in [lo..hi], in sorted order
 }

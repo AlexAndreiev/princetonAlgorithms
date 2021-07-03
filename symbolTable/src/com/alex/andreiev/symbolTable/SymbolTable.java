@@ -1,13 +1,5 @@
 package com.alex.andreiev.symbolTable;
 
-/*
-* sequential search. Maintain an (unordered) linked list of key-value pairs.
-* Search. Scan through all keys until find a match
-* Insert. Scan through all keys until find a match; if no match add to front.
-* Search(guarantee)   Insert(guarantee)      Search hit(avg)     insert(avg)     ordered iteration?   Key interface
-*       N                    N                      N/2               N                 no              equals()
-*/
-
 /*binary search (ordered array) - Efficient implementations of both search and insert
 * Rank helper function. How many keys < k?
 * Problem. To insert, need to shift greater keys over
@@ -27,7 +19,7 @@ package com.alex.andreiev.symbolTable;
  *  Because of allowed deletion other operations also become sqrt(N)
  */
 
-public class SymbolTable<Key extends Comparable<Key>, Value> implements ISymbolTable<Key, Value>{
+public class SymbolTable<Key extends Comparable<Key>, Value> implements IOrderedST<Key, Value> {
 
     private int N = 0;
     private Comparable<Key>[] keys;
@@ -69,8 +61,23 @@ public class SymbolTable<Key extends Comparable<Key>, Value> implements ISymbolT
     }
 
     @Override
+    public Iterable<Key> keys(Key lo, Key hi) {
+        return null;
+    }
+
+    @Override
     public boolean contains(Key key) {
         return false;
+    }
+
+    @Override
+    public Key min() {
+        return null;
+    }
+
+    @Override
+    public Key max() {
+        return null;
     }
 
     @Override
@@ -96,5 +103,15 @@ public class SymbolTable<Key extends Comparable<Key>, Value> implements ISymbolT
     @Override
     public void deleteMin() {
 
+    }
+
+    @Override
+    public void deleteMax() {
+
+    }
+
+    @Override
+    public int size(Key lo, Key hi) {
+        return 0;
     }
 }
