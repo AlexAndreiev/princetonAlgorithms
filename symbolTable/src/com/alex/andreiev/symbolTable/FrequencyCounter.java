@@ -3,7 +3,7 @@ package com.alex.andreiev.symbolTable;
 import java.io.InputStream;
 import java.util.Scanner;
 
-/*Read a sequence of strings from standard input and print out one that occurs with highest frequency
+/* Read a sequence of strings from standard input and print out one that occurs with highest frequency
 * arguments:
 *   - minLen string for tracking
 * */
@@ -11,13 +11,15 @@ import java.util.Scanner;
 public class FrequencyCounter {
 
     public static void main(String[] args) {
-        int minLen = Integer.parseInt(args[0]);
+        int minLen = 5;
+        if (args.length != 0)
+            minLen = Integer.parseInt(args[0]);
         var is = SymbolTable.class.getResourceAsStream("/tinyTale.txt");
         var scanner = new Scanner(is);
-        var st = new SymbolTable<String, Integer>();
+        var st = new SequentialSymbolTable<String, Integer>();
 
         while (scanner.hasNextLine()){
-            var word = scanner.nextLine();
+            var word = scanner.next();
             if (word.length() < minLen) continue;
             if (!st.contains(word))
                 st.put(word, 1);

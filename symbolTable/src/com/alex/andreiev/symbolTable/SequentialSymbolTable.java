@@ -18,7 +18,8 @@ public class SequentialSymbolTable<Key, Value> implements IUnorderedST<Key, Valu
     @Override
     public void put(Key key, Value val) {
         var node = find(key);
-        if (node != null) node.val = val;
+        if (node != null)
+            node.val = val;
         else {  //add new node
             node = new OneLinkedNode<Key, Value>(key, val);
             node.next = root;
@@ -37,7 +38,7 @@ public class SequentialSymbolTable<Key, Value> implements IUnorderedST<Key, Valu
         var node = root;
         while (node != null)
         {
-            if (node.key == key)
+            if (node.key.equals(key))
                 return node;
             node = node.next;
         }
@@ -54,7 +55,7 @@ public class SequentialSymbolTable<Key, Value> implements IUnorderedST<Key, Valu
 
         var node = root;
         while (node.next != null) {
-            if (node.next.key == key) {
+            if (node.next.key.equals(key)) {
                 node.next = node.next.next;
                 count--;
                 return;
