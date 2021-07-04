@@ -9,7 +9,17 @@ import com.alex.andreiev.utils.BinaryComparableNode;
 * the expected number of compares for a search/insert is ~2 ln N.
 * If N distinct keys are inserted in random order, expected height if tree is ~4,311 ln N
 * But... Worst-case height is N (exponentially small chance when keys are inserted in random order)
-* */
+*
+* Search(guarantee)   Insert(guarantee)      Search hit(avg)     insert(avg)     ordered iteration?   Key interface
+*          h                  h                    h                  h                yes              CompareTo()
+*
+* h = height of BST (proportional to log N if keys inserted in random order)
+*
+*
+* Search(guarantee)    Insert (guarantee)  Delete(guarantee)   Search hit(avg)     Insert(avg)     Delete (avg)
+*   N                          N                  N                 1.39lgN          1.39lbN         sqrt(N)
+*  Because of allowed deletion other operations also become sqrt(N)
+*/
 
 public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements IOrderedST<Key, Value> {
 
