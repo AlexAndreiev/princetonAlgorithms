@@ -12,6 +12,5 @@ public interface IOrderedST<Key extends Comparable<Key>, Value> extends IUnorder
     void deleteMin();
     void deleteMax();
     int size(Key lo, Key hi); // number of keys in [lo..hi]
-    Iterable<Key> keys();   // all keys in the table, in sorted order
     Iterable<Key> keys(Key lo, Key hi); // key in [lo..hi], in sorted order
 }

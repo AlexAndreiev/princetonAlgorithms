@@ -30,4 +30,6 @@ public interface IUnorderedST<Key, Value> {
     boolean isEmpty();
     int size();     // number of key-value pairs
     boolean contains(Key key);
+    Iterable<Key> keys();   // all keys in the table, in sorted/unsorted order
+
 }

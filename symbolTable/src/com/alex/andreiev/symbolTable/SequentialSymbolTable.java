@@ -1,5 +1,6 @@
 package com.alex.andreiev.symbolTable;
 
+import com.alex.andreiev.queue.QueueArrayImpl;
 import com.alex.andreiev.utils.OneLinkedNode;
 
 /*
@@ -74,6 +75,17 @@ public class SequentialSymbolTable<Key, Value> implements IUnorderedST<Key, Valu
     @Override
     public boolean contains(Key key) {
         return find(key) != null;
+    }
+
+    @Override
+    public Iterable<Key> keys() {
+        var q = new QueueArrayImpl<Key>();
+        var node = root;
+        while (node != null) {
+            q.enqueue(node.key);
+            node = node.next;
+        }
+        return q;
     }
 
 }
