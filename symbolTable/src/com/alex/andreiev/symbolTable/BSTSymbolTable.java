@@ -147,11 +147,6 @@ public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements IOrde
     }
 
     @Override
-    public Key ceiling(Key key) {
-        return null;
-    }
-
-    @Override
     public int rank(Key key) {
         return rank(key, root);
     }
@@ -230,6 +225,24 @@ public class BSTSymbolTable<Key extends Comparable<Key>, Value> implements IOrde
 
         var t = floor(x.right, key);
         if (t != null)  return t;
+        else return x;
+    }
+
+    @Override
+    public Key ceiling(Key key) {
+        var x = ceiling(root, key);
+        if (x == null) return null;
+        return x.key;
+    }
+
+    private BinaryComparableNode<Key, Value> ceiling(BinaryComparableNode<Key, Value> x, Key key) {
+        if (x == null) return null;
+        var cmp = key.compareTo(x.key);
+        if (cmp == 0) return x;
+        if (cmp > 0) return ceiling(x.right, key);
+
+        var t = ceiling(x.left, key);
+        if (t != null) return t;
         else return x;
     }
 }
