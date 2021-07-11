@@ -11,10 +11,4 @@ public class RedBlackNode<Key extends Comparable<Key>, Value>{
         this.key = key;
         this.val = val;
     }
-
-    public boolean isRed(RedBlackNode x) {
-        if (x == null) return false; // null links are black
-        return x.color == RedBlackColor.RED;
-    }
-
 }
