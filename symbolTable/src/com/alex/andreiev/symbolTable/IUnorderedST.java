@@ -15,25 +15,21 @@ package com.alex.andreiev.symbolTable;
 *   - Non-null: x.equals(null) is false.
 * */
 
-public interface ISymbolTable<Key extends Comparable<Key>, Value> {
+/* A BST is a binary tree in symmetric order
+* Symmetric order. Each node has a key, and every node's key is:
+*   - Larger than all keys in its left subtree
+*   - Smaller than all keys in its right subtree
+*
+* */
+
+public interface IUnorderedST<Key, Value> {
 
     void put(Key key, Value val);
     Value get(Key key);
     void delete(Key key);
     boolean isEmpty();
-    int size();
-    Iterable<Key> keys();
+    int size();     // number of key-value pairs
     boolean contains(Key key);
+    Iterable<Key> keys();   // all keys in the table, in sorted/unsorted order
 
-    //comparable extended ordered operations
-//    Key min();
-//    Key max();
-    Key floor(Key key); // largest key less than or equal to key
-    Key ceiling(Key key);   // smallest key greater than or equal to key
-    int rank(Key key);  // number of keys less than key
-    Key select(int k);  // key of rank k
-    void deleteMin();
-//    void deleteMax();
-//    int size(Key lo, Key hi);
-//    Iterable<Key> keys(Key lo, Key hi); // key in [lo..hi], in sorted order
 }
