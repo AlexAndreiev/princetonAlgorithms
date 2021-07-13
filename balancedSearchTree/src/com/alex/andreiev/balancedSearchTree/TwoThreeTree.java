@@ -31,7 +31,7 @@ package com.alex.andreiev.balancedSearchTree;
 *   - Between 18 and 30 for a billion nodes
 * Guaranteed logarithmic performance for search and insert.
 *
-* * Search(worst)   Insert(worst)   Delete(worst)   Search hit(avg)     insert(avg)     Delete(avg)     ordered iteration?   Key interface
+*   Search(worst)   Insert(worst)   Delete(worst)   Search hit(avg)     insert(avg)     Delete(avg)     ordered iteration?   Key interface
 *       c lgN          c lg N           c lgN           c lgN              c lgN             c lgN              yes           CompareTo()
 *   constants depend upon implementation
 *
