@@ -36,4 +36,13 @@ public class Transaction implements Comparable<Transaction>{
     public String toString() {
         return String.join("\t", name, date.toString(), Double.toString(amount));
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 17;   // nonzero constant
+        hash = 31 * hash + name.hashCode(); // for reference types, use hashCode()
+        hash = 31 * hash + date.hashCode();
+        hash = 31 * hash + ((Double)amount).hashCode(); // for primitive types, use hashCode() of wrapper type
+        return hash;
+    }
 }
