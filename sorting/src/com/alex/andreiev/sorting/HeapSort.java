@@ -37,17 +37,17 @@ public class HeapSort {
 
     // build heap using bottom-up method
     private static void heapConstruction(Comparable[] arr){
-        for (int k = (N-1)/2; k >= 0; k--) // N/2 - the last parent node
+        for (int k = (N/2)-1; k >= 0; k--) // N/2 - the last parent node
             sink(arr, k, N-1);
     }
 
     // remove the maximum, one at a time
     // leave in array, instead of nulling out
     private static void sortDown(Comparable[] arr){
-        while(N > 1){
+        while(N > 0){
             exchange(arr, 0, N - 1);
             N--;
-            sink(arr, 0, N - 1);
+            sink(arr, 0, N-1);
         }
     }
 
