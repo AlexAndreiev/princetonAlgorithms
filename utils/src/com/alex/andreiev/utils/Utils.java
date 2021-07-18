@@ -72,7 +72,7 @@ public class Utils {
     * Power struggle. Better subordinate promoted
     * */
     public static void sink(Comparable[] arr, int k, int N) {
-        while (2*k <= N) // 3*k - first child index
+        while (2*k <= N) // 2*k - first child index
         {
             int j = 2*k;
             //grab larger child
