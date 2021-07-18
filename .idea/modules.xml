@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/Searching/Searching.iml" filepath="$PROJECT_DIR$/Searching/Searching.iml" />
       <module fileurl="file://$PROJECT_DIR$/balancedSearchTree/balancedSearchTree.iml" filepath="$PROJECT_DIR$/balancedSearchTree/balancedSearchTree.iml" />
       <module fileurl="file://$PROJECT_DIR$/dijkstra_2stack_alg/dijkstra_2stack_alg.iml" filepath="$PROJECT_DIR$/dijkstra_2stack_alg/dijkstra_2stack_alg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hashTable/hashTable.iml" filepath="$PROJECT_DIR$/hashTable/hashTable.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/princetonAlgorithms.iml" filepath="$PROJECT_DIR$/.idea/princetonAlgorithms.iml" />
       <module fileurl="file://$PROJECT_DIR$/priorityQueue/priorityQueue.iml" filepath="$PROJECT_DIR$/priorityQueue/priorityQueue.iml" />
       <module fileurl="file://$PROJECT_DIR$/queue/queue.iml" filepath="$PROJECT_DIR$/queue/queue.iml" />
